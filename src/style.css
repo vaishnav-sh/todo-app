@@ -1,0 +1,125 @@
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: nasalization;
+    src: url('../font/nasalization-rg.otf');
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    background: black;
+    color: white;
+}
+
+h1,
+h2, 
+h3 {
+    margin: 0;
+}
+
+.container {
+    width: min(900px, 90%);
+    margin: 0 auto;
+    padding: 5em 0;
+}
+
+header {
+    margin: 2em 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    font-family: nasalization;
+    font-size: 3.5rem;
+    letter-spacing: 10px;
+}
+
+.today {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+#date {
+    margin: 0;
+    font-family: nasalization;
+}
+
+#day {
+    font-size: 1rem;
+    margin: 0;
+    text-transform: uppercase;
+    font-family: nasalization;
+    text-align: center;
+}
+
+#enter-task { 
+    display: block;
+    width: 100%;
+    background: rgb(41, 41, 41);
+    border: none;
+    padding: 1.25em 0.5em;
+    color: seashell;
+    font-size: 1rem;
+}
+
+.form {
+    position: relative;
+}
+
+#add-btn {
+    position: absolute;
+    top: 6px;
+    right: 0;
+    border: 0;
+    background: transparent;
+}
+
+.bar {
+    margin: 1em 0;
+    width: 100%;
+    height: 1px;
+    background: rgb(41, 41, 41);
+}
+
+#todo-list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.todo{
+    display: block;
+    width: 100%;
+    background: rgb(41, 41, 41);
+    border: 1px solid rgb(94, 94, 94);
+    padding: 1em 0.5em;
+    color: seashell;
+    font-size: 1rem;
+    font-weight: 500;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.check,
+.delete {
+    background: transparent;
+    border: none;
+}
+
+@media (max-width: 600px) {
+    .title {
+        font-size: 3rem;
+    }
+
+    .today {
+        font-size: 1.5rem;
+    }
+}

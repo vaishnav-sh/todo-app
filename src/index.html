@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="head-container">
+            <h1 class="title">TODO</h1>
+            <div class="today">
+                <p id="date">24th Sep</p>
+                <p id="day">Wednesday</p>
+            </div>
+        </header>
+        <form action="#" class="form">
+            <input type="text" id="enter-task" placeholder="Enter task item" autocomplete="off">
+            <button id="add-btn" type="submit">
+                <img src="../icons/add.svg" alt="add icon">
+            </button>
+        </form>
+        <div class="bar"></div>
+        <ul id="todo-list">
+        <!-- <div class="todo">
+                <li class="todo-item">Do homework</li>
+                <div class="btn-container">
+                    <button id="check-btn" class="check"><img src="../icons/check.svg" alt="check icon"></button>
+                    <button id="delete-btn" class="delete"><img src="../icons/delete.svg" alt="delete icon"></button>
+                </div>
+            </div> -->
+        </ul>
+    </div>
+
+    <script src="./index.js"></script>
+</body>
+</html>
