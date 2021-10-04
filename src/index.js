@@ -56,12 +56,12 @@ function addItem(e) {
 
     // check and delete
     const checkBtn = document.createElement('Button');
-    checkBtn.innerHTML = '<img src="../icons/check.svg" alt="check icon" class="done">';
+    checkBtn.innerHTML = '<img src="./icons/check.svg" alt="check icon" class="done">';
     checkBtn.classList.add('check');
     btnContainer.appendChild(checkBtn);
 
     const deleteBtn = document.createElement('Button');
-    deleteBtn.innerHTML = '<img src="../icons/delete.svg" alt="delete icon" class="trash">';
+    deleteBtn.innerHTML = '<img src="./icons/delete.svg" alt="delete icon" class="trash">';
     deleteBtn.classList.add('delete');
     btnContainer.appendChild(deleteBtn);
 

@@ -115,6 +115,10 @@ header {
 }
 
 @media (max-width: 600px) {
+    header {
+        margin: 1em 0;
+    }
+
     .title {
         font-size: 3rem;
     }
