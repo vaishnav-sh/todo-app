@@ -16,8 +16,8 @@ To make any contributions, take the following steps and also don't forget to sta
 
 2. Create a new branch and switch to it
 ```
-cd todo-app
-git checkout -b <new_branch_name>
+  cd todo-app
+  git checkout -b <new_branch_name>
 ```
 <br>
 
