@@ -6,7 +6,7 @@ To run this project locally you need to simply clone it
 ```
   git clone git@github.com:vaishnav-sh/todo-app.git
 ```
-## Make your first contribution
+## Contributing to the project
 To make any contributions, take the following steps and also don't forget to star this project.<br>
 1. Fork this repository and clone it
 ```
