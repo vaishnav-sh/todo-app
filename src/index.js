@@ -61,7 +61,7 @@ function addItem(e) {
   var newItem = document.getElementById('enter-task').value;
 
   if (!newItem) {
-    throw new Error('No input test');
+    throw new Error('No input text');
     // return;
   }
 
