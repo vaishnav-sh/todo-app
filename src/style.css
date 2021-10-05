@@ -20,11 +20,9 @@ body {
     
 }
 .Change{
-    
+    border-radius: 3px;
     border:2px;
     
-
-    padding:10px;
 }
 
 .light{
