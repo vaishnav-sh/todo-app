@@ -77,10 +77,10 @@ header {
 #enter-task { 
     display: block;
     width: 100%;
-    background: rgb(41, 41, 41);
+    background: seashell;
     border: none;
     padding: 1.25em 0.5em;
-    color: seashell;
+    color: rgb(41, 41, 41);
     font-size: 1rem;
 }
 
@@ -90,10 +90,10 @@ header {
 
 #add-btn {
     position: absolute;
-    top: 6px;
+    top: 4px;
     right: 0;
     border: 0;
-    background: transparent;
+    background: rgb(41, 41, 41);
 }
 
 .bar {
@@ -112,10 +112,10 @@ header {
 .todo{
     display: block;
     width: 100%;
-    background: rgb(41, 41, 41);
+    color: rgb(41, 41, 41);
     border: 1px solid rgb(94, 94, 94);
     padding: 1em 0.5em;
-    color: seashell;
+    background: seashell;
     font-size: 1rem;
     font-weight: 500;
 
