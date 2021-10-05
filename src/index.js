@@ -142,6 +142,9 @@ function getTodos() {
     todos = JSON.parse(localStorage.getItem("todos"));
   }
   todos.forEach(function (todo) {
+    // return if input value is empty or contains only spaces
+    if(!newItem.trim()) return;
+
     // create task item div
     var todoDiv = document.createElement("div");
     todoDiv.classList.add("todo");
@@ -177,4 +180,14 @@ function getTodos() {
     // clear the textfield
     item.value = "";
   });
+}
+
+// CHECK AND REMOVE ITEM
+function deleteCheck(e) {
+    const item = e.target;
+    if(item.classList[0] === 'done') {
+        document.querySelector('.todo').remove();
+    } else if (item.classList[0] === 'trash'){
+        document.querySelector('.todo').remove();
+    }
 }
