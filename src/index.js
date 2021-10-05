@@ -39,6 +39,9 @@ function addItem(e) {
     // take input text
     var newItem = document.getElementById('enter-task').value;
 
+    // return if input value is empty or contains only spaces
+    if(!newItem.trim()) return;
+
     // create task item div
     var todoDiv = document.createElement('div');
     todoDiv.classList.add('todo');   
