@@ -15,6 +15,7 @@ body {
 }
 .Mode{
     float:right;
+
     padding:15px;
     
 }
@@ -22,8 +23,10 @@ body {
     
     border:2px;
     
-    border-radius: 3px;
+
+    padding:10px;
 }
+
 .light{
     background-color:white;
     color: black;
