@@ -13,7 +13,8 @@
     <div class="Mode">
 
         <button class="Change" onclick="DarkMode()">
-            <img src="./icons/dark mode.png" alt="" height="30">
+            <img id="dark_mode" src="./icons/dark mode.png" alt="" class="hidden" height="30">
+            <img id="light_mode" src="./icons/light.png" alt="" height="30">
         </button>
     </div>
     
@@ -53,7 +54,12 @@
         function DarkMode() {
             var element = document.body;
             element.classList.toggle("light");
+            var light = document.getElementById("light_mode");
+            var dark = document.getElementById("dark_mode");
+            light.classList.toggle("hidden");
+            dark.classList.toggle("hidden");
             }
+
 
     </script>
 
