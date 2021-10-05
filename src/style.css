@@ -13,6 +13,22 @@ body {
     background: black;
     color: white;
 }
+.Mode{
+    float:right;
+
+    padding:15px;
+    
+}
+.Change{
+    border-radius: 3px;
+    border:2px;
+    
+}
+
+.light{
+    background-color:white;
+    color: black;
+}
 
 h1,
 h2, 
