@@ -19,6 +19,9 @@ body {
     padding:15px;
     
 }
+.hidden{
+    visibility: hidden;
+}
 .Change{
     border-radius: 3px;
     border:2px;
