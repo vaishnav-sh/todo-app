@@ -26,18 +26,20 @@ myDay.innerHTML = dNames[currDay];
 // ADDING ITEMS TO DO
 
 const item = document.getElementById('enter-task');
-const todoList = document.getElementById('todo-list');
+const todoList = document.getElementById('todo-list'); //ul
 const addBtn = document.getElementById('add-btn');
+
 
 //event listeners
 addBtn.addEventListener('click', addItem);
 todoList.addEventListener('click', deleteCheck);
 
+
 function addItem(e) {
     e.preventDefault();
 
     // take input text
-    var newItem = document.getElementById('enter-task').value;
+     var newItem = document.getElementById('enter-task').value;
 
     // return if input value is empty or contains only spaces
     if(!newItem.trim()) return;
@@ -48,14 +50,36 @@ function addItem(e) {
 
     // create task item name    
     var newTodo = document.createElement("li");
-    newTodo.innerText =  newItem;
     newTodo.classList.add('todo-item');
+    
+   
+    // creating input by govind
+    var input = document.createElement("INPUT");
+      input.setAttribute("type", "text");
+      input.classList.add('inputItem');
+      newTodo.appendChild(input);
+      input.setAttribute("value",newItem)
+    
+    
+    
     todoDiv.appendChild(newTodo);
 
     // button container
     var btnContainer = document.createElement('div');
     btnContainer.classList.add('btn-container');
     todoDiv.appendChild(btnContainer)
+
+
+    
+    // edit button by govind
+    const editBtn = document.createElement('Button');
+    editBtn.innerHTML = '<img src="./icons/edit.svg" alt="edit icon" class="edit">';
+    editBtn.classList.add('edit');
+    btnContainer.appendChild(editBtn);
+
+    editBtn.addEventListener('click',function() {
+        input.focus();
+    })
 
     // check and delete
     const checkBtn = document.createElement('Button');
@@ -67,6 +91,8 @@ function addItem(e) {
     deleteBtn.innerHTML = '<img src="./icons/delete.svg" alt="delete icon" class="trash">';
     deleteBtn.classList.add('delete');
     btnContainer.appendChild(deleteBtn);
+
+
 
     // append todo item to list
     todoList.appendChild(todoDiv);
@@ -83,4 +109,9 @@ function deleteCheck(e) {
     } else if (item.classList[0] === 'trash'){
         document.querySelector('.todo').remove();
     }
+    
 }
+
+
+
+

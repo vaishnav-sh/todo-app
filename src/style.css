@@ -125,10 +125,21 @@ header {
 }
 
 .check,
-.delete {
+.delete,.edit {
     background: transparent;
     border: none;
 }
+
+.inputItem {
+    margin: 0;
+    font-size: 18px;
+    color: white;
+    padding: 10px;
+    background: transparent;
+    border: none;
+    font-family: Lato, sans-serif;
+    
+  }
 
 @media (max-width: 600px) {
     header {
