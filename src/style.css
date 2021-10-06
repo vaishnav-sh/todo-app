@@ -2,15 +2,15 @@
     box-sizing: border-box;
 }
 
-@font-face {
-    font-family: nasalization;
-    src: url('../font/nasalization-rg.otf');
+font{
+    font-family:'Merriweather', serif;
+    
 }
 
 body {
     font-family: 'Open Sans', sans-serif;
     margin: 0;
-    background: black;
+    background:#4C3C38 ;
     color: white;
 }
 .Mode{
@@ -50,7 +50,7 @@ header {
 }
 
 .title {
-    font-family: nasalization;
+    font-family:'Merriweather', serif;;
     font-size: 3.5rem;
     letter-spacing: 10px;
 }
@@ -63,14 +63,14 @@ header {
 
 #date {
     margin: 0;
-    font-family: nasalization;
+    font-family:'Merriweather', serif;
 }
 
 #day {
     font-size: 1rem;
     margin: 0;
     text-transform: uppercase;
-    font-family: nasalization;
+    font-family: 'Merriweather', serif;
     text-align: center;
 }
 
