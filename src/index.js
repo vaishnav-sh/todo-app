@@ -27,9 +27,10 @@ $('#completed-todo-list-title').click(function(event) {
     $(this).toggleClass('active').next().slideToggle(300);
 });
 const item = document.getElementById('enter-task');
-const todoList = document.getElementById('todo-list');
+const todoList = document.getElementById('todo-list'); //ul
 const addBtn = document.getElementById('add-btn');
 const completedList = document.getElementById('completed-todo-list-items');
+
 
 //event listeners
 addBtn.addEventListener('click', addItem);
@@ -78,14 +79,67 @@ completedList.appendChild(createToDoItem(e.innerText,false));
 
 }
 
+
 function addItem(e) {
     e.preventDefault();
 
     // take input text
-    var newItem = document.getElementById('enter-task').value;
+     var newItem = document.getElementById('enter-task').value;
 
     // return if input value is empty or contains only spaces
     if(!newItem.trim()) return;
+
+
+    // create task item div
+    var todoDiv = document.createElement('div');
+    todoDiv.classList.add('todo');   
+
+    // create task item name    
+    var newTodo = document.createElement("li");
+    newTodo.classList.add('todo-item');
+    
+   
+    // creating input by govind
+    var input = document.createElement("INPUT");
+      input.setAttribute("type", "text");
+      input.classList.add('inputItem');
+      newTodo.appendChild(input);
+      input.setAttribute("value",newItem)
+    
+    
+    
+    todoDiv.appendChild(newTodo);
+
+    // button container
+    var btnContainer = document.createElement('div');
+    btnContainer.classList.add('btn-container');
+    todoDiv.appendChild(btnContainer)
+
+
+    
+    // edit button by govind
+    const editBtn = document.createElement('Button');
+    editBtn.innerHTML = '<img src="./icons/edit.svg" alt="edit icon" class="edit">';
+    editBtn.classList.add('edit');
+    btnContainer.appendChild(editBtn);
+
+    editBtn.addEventListener('click',function() {
+        input.focus();
+    })
+
+    // check and delete
+    const checkBtn = document.createElement('Button');
+    checkBtn.innerHTML = '<img src="./icons/check.svg" alt="check icon" class="done">';
+    checkBtn.classList.add('check');
+    btnContainer.appendChild(checkBtn);
+
+    const deleteBtn = document.createElement('Button');
+    deleteBtn.innerHTML = '<img src="./icons/delete.svg" alt="delete icon" class="trash">';
+    deleteBtn.classList.add('delete');
+    btnContainer.appendChild(deleteBtn);
+
+
+
 
     // append todo item to list
     todoList.appendChild(createToDoItem(newItem,true));
@@ -104,7 +158,9 @@ function deleteCheck(e) {
     } else if (item.classList[0] === 'trash'){
         popToDoItem(item);
     }
+    
 }
+
 
 function popToDoItem(item){
     const id =  item.id.substring(item.id.length, item.id.lastIndexOf("-")+1);
@@ -112,3 +168,4 @@ function popToDoItem(item){
     todo.remove();
     return todo;
 }
+
