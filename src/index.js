@@ -1,3 +1,6 @@
+// DEPENDENCIES
+let todos = []
+
 // SETTING THE DATE
 const myDate = document.getElementById('date')
 const myDay = document.getElementById('day');
@@ -26,6 +29,7 @@ var completedTasks = document.getElementById('completed-todo-list-title');
 
 
 
+
 // ADDING ITEMS TO DO
 const todoInput = document.querySelector('.enter-task');
 const todoList = document.querySelector('.todo-list');
@@ -33,22 +37,34 @@ const addBtn = document.querySelector('.add-btn');
 
 
 
+
+// click on completed section
+$('.completed_title').click(function(event) {
+    $('#completed_arrow').toggleClass('active');
+    $('#completed-todo-list-items').slideToggle(300);
+});
+
+// CACHED ELEMENTS
+const item = document.getElementById('enter-task');
+const todoList = document.getElementById('todo-list'); //ul
+const addBtn = document.getElementById('add-btn');
+const completedList = document.getElementById('completed-todo-list-items');
+
+
+// EVENT LISTENERS
 addBtn.addEventListener('click', addItem);
 todoList.addEventListener('click', deleteCheck);
 
 
-//event listeners
-addBtn.addEventListener('click', addItem);
-
-const createToDoItem = (text,isCompleted) => {
-var number = Math.random();
+// CREATE TODO ITEM
+const createToDoItem = (todo => {
 var todoDiv = document.createElement('div');
 todoDiv.classList.add('todo'); 
-todoDiv.id = `todo-${number}`;  
+todoDiv.id = `todo-${todo.id}`;  
 
 // create task item name    
 var newTodo = document.createElement("li");
-newTodo.innerText =  text;
+newTodo.innerText =  todo.text;
 newTodo.classList.add('todo-item');
 todoDiv.appendChild(newTodo);
 
@@ -56,32 +72,49 @@ todoDiv.appendChild(newTodo);
 var btnContainer = document.createElement('div');
 btnContainer.classList.add('btn-container');
 todoDiv.appendChild(btnContainer);
-if(isCompleted)
-{
-const checkBtn = document.createElement('Button');
-checkBtn.innerHTML = `<img id='done-${number}' src="./icons/check.svg" alt="check icon" class="done">`;
-checkBtn.classList.add('check');
-checkBtn.id = `check-${number}`;
-btnContainer.appendChild(checkBtn);
+
+// if the todo has not been completed, add check button
+if(!todo.isCompleted){
+	const checkBtn = document.createElement('Button');
+	checkBtn.innerHTML = `<img id='done-${todo.id}' src="./icons/check.svg" alt="check icon" class="done">`;
+	checkBtn.classList.add('check');
+	checkBtn.id = `check-${todo.id}`;
+	btnContainer.appendChild(checkBtn);
 }
 
 const deleteBtn = document.createElement('Button');
-deleteBtn.innerHTML = `<img id='trash-${number}' src="./icons/delete.svg" alt="delete icon" class="trash">`;
+deleteBtn.innerHTML = `<img id='trash-${todo.id}' src="./icons/delete.svg" alt="delete icon" class="trash">`;
 deleteBtn.classList.add('delete');
-deleteBtn.id = `delete-${number}`;
+deleteBtn.id = `delete-${todo.id}`;
 btnContainer.appendChild(deleteBtn);
 return todoDiv;
-}
-const moveToDone = (e) => {
+})
 
-// append todo item to completed list
-completedList.appendChild(createToDoItem(e.innerText,false));
+// MOVE TODO TO COMPLETED LIST
+const moveToDone = (targetTodo) => {
+	// update completed value of todo
+	todos.forEach(todo => {
+		if(todo.id === targetTodo.id){
+			todo.isCompleted = true
+		}
+	})
+
+	// append todo item to completed list
+	completedList.appendChild(createToDoItem(targetTodo));
+
 
 
 function addItem(event) {
     event.preventDefault();
 
+
+	updateLocalStorage(todos)
+
 }
+
+// ADD TODO TO TODOS ARRAY AND LOCAL STORAGE 
+function addItem(e){
+	e.preventDefault();
 
 
 
@@ -91,7 +124,29 @@ function addItem(e) {
 
 
 
+	// take input text
+	var newItem = document.getElementById('enter-task').value;
 
+	// return if input value is empty or contains only spaces
+	if(!newItem.trim()) return;
+
+	// create todo model
+	const todo = {
+		id: Math.random(),
+		text: newItem,
+		isCompleted: false
+	}
+
+
+	todos.push(todo)
+
+	updateLocalStorage(todos)
+
+	renderItem(todo)
+}
+
+// DISPLAY TODO ITEM
+function renderItem(todo) {
     // create task item div
     var todoDiv = document.createElement('div');
     todoDiv.classList.add('todo');   
@@ -108,13 +163,20 @@ function addItem(e) {
       input.setAttribute("type", "text");
       input.classList.add('inputItem');
       newTodo.appendChild(input);
-      input.setAttribute("value",newItem)
+      input.setAttribute("value",todo.text)
     
     
     
     todoDiv.appendChild(newTodo);
 
 
+
+
+
+    // button container
+    var btnContainer = document.createElement('div');
+    btnContainer.classList.add('btn-container');
+    todoDiv.appendChild(btnContainer)
 
     
 
@@ -132,15 +194,17 @@ function addItem(e) {
     deleteBtn.classList.add('delete');
     todoDiv.appendChild(deleteBtn);
 
-
-
-
     // append todo item to list
-    todoList.appendChild(createToDoItem(newItem,true));
+		if(todo.isCompleted){
+			completedList.appendChild(createToDoItem(todo))
+		} else {
+			todoList.appendChild(createToDoItem(todo))
+		}
 
     // clear the textfield
     todoInput.value = "";
 }
+
 
 // CHECK AND REMOVE 
 function deleteCheck(event) {
@@ -160,3 +224,28 @@ function deleteCheck(event) {
 
 
 
+
+// DELETE TODO FROM LIST AND LOCALSTORAGE
+function deleteTodo(targetTodo){
+	todos = todos.filter(todo => todo.id != targetTodo.id)
+	updateLocalStorage(todos)
+}
+
+// UPDATE LOCALSTORAGE WITH CURRENT TODO ARRAY
+function updateLocalStorage(todos){
+	localStorage.setItem('todos', JSON.stringify(todos))
+}
+
+// GET TODOS SAVED IN LOCALSTORAGE
+function getLocalTodos(){
+	if(localStorage.getItem('todos')){
+		todos = JSON.parse(localStorage.getItem('todos'))
+	}
+
+	todos.forEach(todo => {
+		renderItem(todo)
+	})
+}
+
+// ON PAGE LOAD
+getLocalTodos()
