@@ -26,8 +26,10 @@ myDate.innerHTML = currDate + "<sup>" + sup + "</sup>" + " " + mNames[currMonth]
 myDay.innerHTML = dNames[currDay];
 var completedTasks = document.getElementById('completed-todo-list-title');
 
-$('#completed-todo-list-title').click(function(event) {
-    $(this).toggleClass('active').next().slideToggle(300);
+// click on completed section
+$('.completed_title').click(function(event) {
+    $('#completed_arrow').toggleClass('active');
+    $('#completed-todo-list-items').slideToggle(300);
 });
 
 // CACHED ELEMENTS
