@@ -10,19 +10,18 @@
 }
 
 body {
-  font-family: "Open Sans", sans-serif;
-  margin: 0;
   background: #2f2f2f;
   color: white;
+  font-family: "Open Sans", sans-serif;
+  margin: 0;
 }
 .Mode {
   float: right;
-
   padding: 15px;
 }
 .Change {
-  border-radius: 3px;
   border: 2px;
+  border-radius: 3px;
 }
 
 .light {
@@ -37,10 +36,10 @@ h3 {
 }
 
 header {
-  margin: 2em 0;
+  align-items: center;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  margin: 2em 0;
 }
 
 .title {
@@ -55,25 +54,25 @@ header {
 }
 
 #date {
-  margin: 0;
   font-family: nasalization;
+  margin: 0;
 }
 
 #day {
+  font-family: nasalization;
   font-size: 1rem;
   margin: 0;
   text-transform: uppercase;
-  font-family: nasalization;
 }
 
 #enter-task {
-  display: block;
-  width: 100%;
   background: rgb(41, 41, 41);
+  display: block;
   border: none;
-  padding: 1.25em 0.5em;
   color: seashell;
   font-size: 1rem;
+  padding: 1.25em 0.5em;
+  width: 100%;
 }
 
 .form {
@@ -81,39 +80,38 @@ header {
 }
 
 #add-btn {
-  position: absolute;
-  top: 6px;
-  right: 0;
-  border: 0;
   background: transparent;
+  border: 0;
+  position: absolute;
+  right: 0;
+  top: 6px;
 }
 
 .bar {
+  background: rgb(41, 41, 41);
+  height: 1px;
   margin: 1em 0;
   width: 100%;
-  height: 1px;
-  background: rgb(41, 41, 41);
 }
 
 #todo-list {
-  padding: 0;
-  margin: 0;
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .todo {
-  display: block;
-  width: 100%;
+  align-items: center;
   background: rgb(41, 41, 41);
+  display: block;
+  display: flex;
   border: 1px solid rgb(94, 94, 94);
-  padding: 1em 0.5em;
   color: seashell;
   font-size: 1rem;
   font-weight: 500;
-
-  display: flex;
   justify-content: space-between;
-  align-items: center;
+  padding: 1em 0.5em;
+  width: 100%;
 }
 
 .check,
@@ -124,13 +122,13 @@ header {
 }
 
 .inputItem {
-  margin: 0;
-  font-size: 18px;
-  color: white;
-  padding: 10px;
   background: transparent;
   border: none;
+  color: white;
   font-family: Lato, sans-serif;
+  font-size: 18px;
+  margin: 0;
+  padding: 10px;
 }
 
 @media (max-width: 600px) {
@@ -150,12 +148,13 @@ header {
 .completed-todo-list .todo {
   text-decoration: line-through;
 }
+
 .completed_title {
+  font-size: 28px;
+  font-weight: bold;
   /* position: relative; */
   /* padding-left: 40px; */
   /* cursor: pointer; */
-  font-weight: bold;
-  font-size: 28px;
   /* margin: 10px 0px; */
 }
 
@@ -197,18 +196,20 @@ header {
 .light-arrow {
   color: black !important;
 }
+
 .completed_title {
-  outline: none !important;
   box-shadow: none !important;
+  outline: none !important;
 }
+
 #completed_arrow.active {
   transform: rotate(180deg);
 }
 
 .completed-todo-list-items {
   display: none;
+  list-style: none;
+  margin: 0;
   padding-top: 10px;
   padding: 0;
-  margin: 0;
-  list-style: none;
 }
