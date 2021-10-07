@@ -1,6 +1,3 @@
-// DEPENDENCIES
-let todos = []
-
 // SETTING THE DATE
 const myDate = document.getElementById('date')
 const myDay = document.getElementById('day');
@@ -35,19 +32,23 @@ const todoList = document.querySelector('.todo-list');
 const addBtn = document.querySelector('.add-btn');
 
 
+
 addBtn.addEventListener('click', addItem);
 todoList.addEventListener('click', deleteCheck);
 
 
-// CREATE TODO ITEM
-const createToDoItem = (todo => {
+//event listeners
+addBtn.addEventListener('click', addItem);
+
+const createToDoItem = (text,isCompleted) => {
+var number = Math.random();
 var todoDiv = document.createElement('div');
 todoDiv.classList.add('todo'); 
-todoDiv.id = `todo-${todo.id}`;  
+todoDiv.id = `todo-${number}`;  
 
 // create task item name    
 var newTodo = document.createElement("li");
-newTodo.innerText =  todo.text;
+newTodo.innerText =  text;
 newTodo.classList.add('todo-item');
 todoDiv.appendChild(newTodo);
 
@@ -55,74 +56,42 @@ todoDiv.appendChild(newTodo);
 var btnContainer = document.createElement('div');
 btnContainer.classList.add('btn-container');
 todoDiv.appendChild(btnContainer);
-
-// if the todo has not been completed, add check button
-if(!todo.isCompleted){
-	const checkBtn = document.createElement('Button');
-	checkBtn.innerHTML = `<img id='done-${todo.id}' src="./icons/check.svg" alt="check icon" class="done">`;
-	checkBtn.classList.add('check');
-	checkBtn.id = `check-${todo.id}`;
-	btnContainer.appendChild(checkBtn);
+if(isCompleted)
+{
+const checkBtn = document.createElement('Button');
+checkBtn.innerHTML = `<img id='done-${number}' src="./icons/check.svg" alt="check icon" class="done">`;
+checkBtn.classList.add('check');
+checkBtn.id = `check-${number}`;
+btnContainer.appendChild(checkBtn);
 }
 
 const deleteBtn = document.createElement('Button');
-deleteBtn.innerHTML = `<img id='trash-${todo.id}' src="./icons/delete.svg" alt="delete icon" class="trash">`;
+deleteBtn.innerHTML = `<img id='trash-${number}' src="./icons/delete.svg" alt="delete icon" class="trash">`;
 deleteBtn.classList.add('delete');
-deleteBtn.id = `delete-${todo.id}`;
+deleteBtn.id = `delete-${number}`;
 btnContainer.appendChild(deleteBtn);
 return todoDiv;
-})
-
-// MOVE TODO TO COMPLETED LIST
-const moveToDone = (targetTodo) => {
-	// update completed value of todo
-	todos.forEach(todo => {
-		if(todo.id === targetTodo.id){
-			todo.isCompleted = true
-		}
-	})
-
-	// append todo item to completed list
-	completedList.appendChild(createToDoItem(targetTodo));
-
-	updateLocalStorage(todos)
 }
+const moveToDone = (e) => {
 
-// ADD TODO TO TODOS ARRAY AND LOCAL STORAGE 
-function addItem(e){
-	e.preventDefault();
-
+// append todo item to completed list
+completedList.appendChild(createToDoItem(e.innerText,false));
 
 
 function addItem(event) {
     event.preventDefault();
 
-
-
-
-	// take input text
-	var newItem = document.getElementById('enter-task').value;
-
-	// return if input value is empty or contains only spaces
-	if(!newItem.trim()) return;
-
-	// create todo model
-	const todo = {
-		id: Math.random(),
-		text: newItem,
-		isCompleted: false
-	}
-
-
-	todos.push(todo)
-
-	updateLocalStorage(todos)
-
-	renderItem(todo)
 }
 
-// DISPLAY TODO ITEM
-function renderItem(todo) {
+
+
+function addItem(e) {
+    e.preventDefault();
+
+
+
+
+
     // create task item div
     var todoDiv = document.createElement('div');
     todoDiv.classList.add('todo');   
@@ -139,11 +108,15 @@ function renderItem(todo) {
       input.setAttribute("type", "text");
       input.classList.add('inputItem');
       newTodo.appendChild(input);
-      input.setAttribute("value",todo.text)
+      input.setAttribute("value",newItem)
     
     
     
     todoDiv.appendChild(newTodo);
+
+
+
+    
 
 
    
@@ -159,12 +132,11 @@ function renderItem(todo) {
     deleteBtn.classList.add('delete');
     todoDiv.appendChild(deleteBtn);
 
+
+
+
     // append todo item to list
-		if(todo.isCompleted){
-			completedList.appendChild(createToDoItem(todo))
-		} else {
-			todoList.appendChild(createToDoItem(todo))
-		}
+    todoList.appendChild(createToDoItem(newItem,true));
 
     // clear the textfield
     todoInput.value = "";
@@ -188,34 +160,3 @@ function deleteCheck(event) {
 
 
 
-
-
-
-
- 
-
-
-// DELETE TODO FROM LIST AND LOCALSTORAGE
-function deleteTodo(targetTodo){
-	todos = todos.filter(todo => todo.id != targetTodo.id)
-	updateLocalStorage(todos)
-}
-
-// UPDATE LOCALSTORAGE WITH CURRENT TODO ARRAY
-function updateLocalStorage(todos){
-	localStorage.setItem('todos', JSON.stringify(todos))
-}
-
-// GET TODOS SAVED IN LOCALSTORAGE
-function getLocalTodos(){
-	if(localStorage.getItem('todos')){
-		todos = JSON.parse(localStorage.getItem('todos'))
-	}
-
-	todos.forEach(todo => {
-		renderItem(todo)
-	})
-}
-
-// ON PAGE LOAD
-getLocalTodos()
