@@ -24,63 +24,66 @@ myDay.innerHTML = dNames[currDay];
 
 
 // ADDING ITEMS TO DO
-
-const item = document.getElementById('enter-task');
-const todoList = document.getElementById('todo-list');
-const addBtn = document.getElementById('add-btn');
+const todoInput = document.querySelector('.enter-task');
+const todoList = document.querySelector('.todo-list');
+const addBtn = document.querySelector('.add-btn');
 
 //event listeners
 addBtn.addEventListener('click', addItem);
 todoList.addEventListener('click', deleteCheck);
 
-function addItem(e) {
-    e.preventDefault();
+function addItem(event) {
+    event.preventDefault();
 
-    // take input text
-    var newItem = document.getElementById('enter-task').value;
-
-    // return if input value is empty or contains only spaces
-    if(!newItem.trim()) return;
+    
 
     // create task item div
     var todoDiv = document.createElement('div');
     todoDiv.classList.add('todo');   
 
     // create task item name    
-    var newTodo = document.createElement("li");
-    newTodo.innerText =  newItem;
+    var newTodo = document.createElement('li');
+    newTodo.innerText =  todoInput.value;
     newTodo.classList.add('todo-item');
     todoDiv.appendChild(newTodo);
 
-    // button container
-    var btnContainer = document.createElement('div');
-    btnContainer.classList.add('btn-container');
-    todoDiv.appendChild(btnContainer)
+
 
     // check and delete
     const checkBtn = document.createElement('Button');
-    checkBtn.innerHTML = '<img src="./icons/check.svg" alt="check icon" class="done">';
-    checkBtn.classList.add('check');
-    btnContainer.appendChild(checkBtn);
+    checkBtn.innerHTML =  '<i class="fas fa-check"></i>';
+    checkBtn.classList.add('check1');
+    todoDiv.appendChild(checkBtn);
 
     const deleteBtn = document.createElement('Button');
-    deleteBtn.innerHTML = '<img src="./icons/delete.svg" alt="delete icon" class="trash">';
+    deleteBtn.innerHTML =  '<i class="fas fa-trash"></i>';
     deleteBtn.classList.add('delete');
-    btnContainer.appendChild(deleteBtn);
+    todoDiv.appendChild(deleteBtn);
 
     // append todo item to list
     todoList.appendChild(todoDiv);
 
     // clear the textfield
-    item.value = "";
+    todoInput.value = "";
 }
 
 // CHECK AND REMOVE ITEM
-function deleteCheck(e) {
-    const item = e.target;
-    if(item.classList[0] === 'done') {
-        document.querySelector('.todo').remove();
-    } else if (item.classList[0] === 'trash'){
-        document.querySelector('.todo').remove();
+function deleteCheck(event) {
+    const item = event.target;
+    if(item.classList[0] === 'check1') {
+      const todo=item.parentElement;
+           todo.classList.toggle('completed');
+        
+    } 
+    if (item.classList[0] === 'delete'){
+        
+       document.querySelector('.todo').remove();
+      
     }
 }
+
+
+
+
+
+ 

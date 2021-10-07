@@ -74,7 +74,7 @@ header {
     text-align: center;
 }
 
-#enter-task { 
+.enter-task { 
     display: block;
     width: 100%;
     background: rgb(41, 41, 41);
@@ -88,7 +88,7 @@ header {
     position: relative;
 }
 
-#add-btn {
+.add-btn {
     position: absolute;
     top: 6px;
     right: 0;
@@ -103,7 +103,7 @@ header {
     background: rgb(41, 41, 41);
 }
 
-#todo-list {
+.todo-list {
     padding: 0;
     margin: 0;
     list-style: none;
@@ -115,19 +115,28 @@ header {
     background: rgb(41, 41, 41);
     border: 1px solid rgb(94, 94, 94);
     padding: 1em 0.5em;
-    color: seashell;
+  
     font-size: 1rem;
     font-weight: 500;
+    transition:all 1s ease;
 
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
+.todo li{
+    flex:1;
+}
+.fa-trash,.fa-check{
+    pointer-events: none;
+}
 
-.check,
-.delete {
-    background: transparent;
-    border: none;
+
+.completed{
+    opacity: 0.5;
+    color:lightgreen;
+    font-weight: 900;
+    text-decoration:line-through;
 }
 
 @media (max-width: 600px) {
