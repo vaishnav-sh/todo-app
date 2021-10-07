@@ -150,16 +150,16 @@ header {
 .completed-todo-list .todo{
     text-decoration: line-through;
 }
-.completed-todo-list-title {
-    position: relative;
-    padding-left: 40px;
-    cursor: pointer;
+.completed_title {
+    /* position: relative; */
+    /* padding-left: 40px; */
+    /* cursor: pointer; */
     font-weight: bold;
     font-size: 28px;
-    margin: 10px 0px;
+    /* margin: 10px 0px; */
 }
 
-.completed-todo-list-title::before,
+/* .completed-todo-list-title::before,
 .completed-todo-list-title::after {
     content: "";
     background-color: white;
@@ -169,8 +169,8 @@ header {
     top: 42%;
     width: 20px;
     height: 7px;
-}
-
+} */
+/* 
 .completed-todo-list-title:before {
     transform: rotate(40deg);
     left: 0;
@@ -191,6 +191,18 @@ header {
 
 .completed-todo-list-title.active::after {
     transform: rotate(40deg);
+} */
+
+/* Completed section styling */
+.light-arrow{
+    color: black !important;
+}
+.completed_title{
+    outline: none !important;
+    box-shadow: none !important;
+}
+#completed_arrow.active {
+    transform: rotate(180deg);
 }
 
 .completed-todo-list-items {
