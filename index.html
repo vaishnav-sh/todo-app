@@ -5,9 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo List</title>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+     <!--Bootstrap CSS   -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="./src/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -20,36 +24,49 @@
     
 
 
-    <div class="container">
-        <header class="head-container">
-            <h1 class="title">TODO</h1>
-            <div class="today">
+    <div class="container pt-5">
+        <header class="head-container row mx-0">
+            <div class="col-12 col-md-8 text-center text-md-left mb-2">
+                <h1 class="title">TODO</h1>
+            </div>
+            <div class="today col-12 col-md-4 text-center text-md-right mb-2">
                 <p id="date">24th Sep</p>
                 <p id="day">Wednesday</p>
             </div>
         </header>
-        <form action="#" class="form">
-            <input type="text" id="enter-task" placeholder="Enter task item" autocomplete="off">
-            <button id="add-btn" type="submit">
-                <img src="./icons/add.svg" alt="add icon">
-            </button>
-        </form>
-        <div class="bar"></div>
-        <ul id="todo-list">
-        <!-- <div class="todo">
-                <li class="todo-item">Do homework</li>
-                <Input class="inputItem">
-                <div class="btn-container">
-                    <button id="check-btn" class="check"><img src="../icons/check.svg" alt="check icon"></button>
-                    <button id="delete-btn" class="delete"><img src="../icons/delete.svg" alt="delete icon"></button>
-                </div>
-            </div> -->
-        </ul>
+        <div class="row mx-0">
+            <div class="col-12">
+                <form action="#" class="form">
+                    <input type="text" id="enter-task" placeholder="Enter task item" autocomplete="off">
+                    <button id="add-btn" type="submit">
+                        <img src="./icons/add.svg" alt="add icon">
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="row mx-0 mb-3">
+            <div class="col-12">
+                <div class="bar"></div>
+                <ul id="todo-list">
+                <!-- <div class="todo">
+                        <li class="todo-item">Do homework</li>
+                        <Input class="inputItem">
+                        <div class="btn-container">
+                            <button id="check-btn" class="check"><img src="../icons/check.svg" alt="check icon"></button>
+                            <button id="delete-btn" class="delete"><img src="../icons/delete.svg" alt="delete icon"></button>
+                        </div>
+                    </div> -->
+                </ul>
+            </div>
+        </div>
+        <div class="row mx-0">
+            <div class="col-12">
                 <div class="completed-todo-list">
                     <div class="completed-todo-list-title" id="completed-todo-list-title">Completed</div>
-                    <div class="completed-todo-list-items" id="completed-todo-list-items">
-                     </div>
+                     <div class="completed-todo-list-items" id="completed-todo-list-items"></div>
                 </div>
+            </div>
+        </div>
     </div>
 
     <script src="./src/index.js"></script>
