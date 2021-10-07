@@ -36,12 +36,6 @@ h3 {
     margin: 0;
 }
 
-.container {
-    width: min(900px, 90%);
-    margin: 0 auto;
-    padding: 5em 0;
-}
-
 header {
     margin: 2em 0;
     display: flex;
@@ -56,7 +50,6 @@ header {
 }
 
 .today {
-    margin: 0;
     font-size: 2rem;
     font-weight: 700;
 }
@@ -71,7 +64,6 @@ header {
     margin: 0;
     text-transform: uppercase;
     font-family: nasalization;
-    text-align: center;
 }
 
 #enter-task { 
