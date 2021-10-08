@@ -35,12 +35,6 @@ h1, h2, h3 {
     margin: 0;
 }
 
-.container {
-    width: min(900px, 90%);
-    margin: 0 auto;
-    padding: 5em 0;
-}
-
 header {
     margin: 2em 0;
     display: flex;
@@ -55,7 +49,6 @@ header {
 }
 
 .today {
-    margin: 0;
     font-size: 2rem;
     font-weight: 700;
 }
@@ -70,7 +63,6 @@ header {
     margin: 0;
     text-transform: uppercase;
     font-family: nasalization;
-    text-align: center;
 }
 
 #enter-task {
@@ -153,16 +145,19 @@ header {
     text-decoration: line-through;
 }
 
-.completed-todo-list-title {
-    position: relative;
-    padding-left: 40px;
-    cursor: pointer;
+.completed_title {
+    /* position: relative; */
+    /* padding-left: 40px; */
+    /* cursor: pointer; */
     font-weight: bold;
     font-size: 28px;
-    margin: 10px 0px;
+    /* margin: 10px 0px; */
 }
 
-.completed-todo-list-title::before, .completed-todo-list-title::after {
+
+/* .completed-todo-list-title::before,
+.completed-todo-list-title::after {
+
     content: "";
     background-color: white;
     border-radius: 5px;
@@ -171,8 +166,8 @@ header {
     top: 42%;
     width: 20px;
     height: 7px;
-}
-
+} */
+/* 
 .completed-todo-list-title:before {
     transform: rotate(40deg);
     left: 0;
@@ -193,6 +188,18 @@ header {
 
 .completed-todo-list-title.active::after {
     transform: rotate(40deg);
+} */
+
+/* Completed section styling */
+.light-arrow{
+    color: black !important;
+}
+.completed_title{
+    outline: none !important;
+    box-shadow: none !important;
+}
+#completed_arrow.active {
+    transform: rotate(180deg);
 }
 
 .completed-todo-list-items {
