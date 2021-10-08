@@ -13,26 +13,25 @@ body {
     background: black;
     color: white;
 }
-.Mode{
-    float:right;
 
-    padding:15px;
-    
+.Mode {
+    float: right;
+    padding: 15px;
 }
-.Change{
+
+.Change {
     border-radius: 3px;
-    border:2px;
-    
+    border: 2px;
+    background-color: white;
+    cursor: pointer;
 }
 
-.light{
-    background-color:white;
+.light {
+    background-color: white;
     color: black;
 }
 
-h1,
-h2, 
-h3 {
+h1, h2, h3 {
     margin: 0;
 }
 
@@ -66,7 +65,7 @@ header {
     font-family: nasalization;
 }
 
-#enter-task { 
+#enter-task {
     display: block;
     width: 100%;
     background: rgb(41, 41, 41);
@@ -101,7 +100,7 @@ header {
     list-style: none;
 }
 
-.todo{
+.todo {
     display: block;
     width: 100%;
     background: rgb(41, 41, 41);
@@ -110,14 +109,12 @@ header {
     color: seashell;
     font-size: 1rem;
     font-weight: 500;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.check,
-.delete,.edit {
+.check, .delete, .edit {
     background: transparent;
     border: none;
 }
@@ -130,26 +127,24 @@ header {
     background: transparent;
     border: none;
     font-family: Lato, sans-serif;
-    
-  }
+}
 
 @media (max-width: 600px) {
     header {
         margin: 1em 0;
     }
-
     .title {
         font-size: 3rem;
     }
-
     .today {
         font-size: 1.5rem;
     }
 }
 
-.completed-todo-list .todo{
+.completed-todo-list .todo {
     text-decoration: line-through;
 }
+
 .completed_title {
     /* position: relative; */
     /* padding-left: 40px; */
@@ -159,8 +154,10 @@ header {
     /* margin: 10px 0px; */
 }
 
+
 /* .completed-todo-list-title::before,
 .completed-todo-list-title::after {
+
     content: "";
     background-color: white;
     border-radius: 5px;
@@ -175,13 +172,13 @@ header {
     transform: rotate(40deg);
     left: 0;
 }
-.completed-todo-list-title::after{
+
+.completed-todo-list-title::after {
     transform: rotate(-40deg);
     left: 12px;
 }
 
-.completed-todo-list-title.active::before,
-.completed-todo-list-title.active::after {
+.completed-todo-list-title.active::before, .completed-todo-list-title.active::after {
     background-color: white;
 }
 
