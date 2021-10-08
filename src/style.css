@@ -15,10 +15,12 @@ body {
   font-family: "Open Sans", sans-serif;
   margin: 0;
 }
+
 .Mode {
   float: right;
   padding: 15px;
 }
+
 .Change {
   border: 2px;
   border-radius: 3px;
@@ -158,8 +160,10 @@ header {
   /* margin: 10px 0px; */
 }
 
+
 /* .completed-todo-list-title::before,
 .completed-todo-list-title::after {
+
     content: "";
     background-color: white;
     border-radius: 5px;
@@ -174,13 +178,13 @@ header {
     transform: rotate(40deg);
     left: 0;
 }
-.completed-todo-list-title::after{
+
+.completed-todo-list-title::after {
     transform: rotate(-40deg);
     left: 12px;
 }
 
-.completed-todo-list-title.active::before,
-.completed-todo-list-title.active::after {
+.completed-todo-list-title.active::before, .completed-todo-list-title.active::after {
     background-color: white;
 }
 
