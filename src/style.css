@@ -1,157 +1,163 @@
-*, *::after, *::before {
-    box-sizing: border-box;
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
 }
 
 @font-face {
-    font-family: nasalization;
-    src: url('../font/nasalization-rg.otf');
+  font-family: nasalization;
+  src: url("../font/nasalization-rg.otf");
 }
 
 body {
-    font-family: 'Open Sans', sans-serif;
-    margin: 0;
-    background: black;
-    color: white;
+  background: #2f2f2f;
+  color: white;
+  font-family: "Open Sans", sans-serif;
+  margin: 0;
 }
 
 .Mode {
-    float: right;
-    padding: 15px;
+  float: right;
+  padding: 15px;
 }
 
 .Change {
-    border-radius: 3px;
-    border: 2px;
-    background-color: white;
-    cursor: pointer;
+  border: 2px;
+  border-radius: 3px;
 }
 
 .light {
-    background-color: white;
-    color: black;
+  background-color: white;
+  color: black;
 }
 
-h1, h2, h3 {
-    margin: 0;
+h1,
+h2,
+h3 {
+  margin: 0;
 }
 
 header {
-    margin: 2em 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 2em 0;
 }
 
 .title {
-    font-family: nasalization;
-    font-size: 3.5rem;
-    letter-spacing: 10px;
+  font-family: nasalization;
+  font-size: 3.5rem;
+  letter-spacing: 10px;
 }
 
 .today {
-    font-size: 2rem;
-    font-weight: 700;
+  font-size: 2rem;
+  font-weight: 700;
 }
 
 #date {
-    margin: 0;
-    font-family: nasalization;
+  font-family: nasalization;
+  margin: 0;
 }
 
 #day {
-    font-size: 1rem;
-    margin: 0;
-    text-transform: uppercase;
-    font-family: nasalization;
+  font-family: nasalization;
+  font-size: 1rem;
+  margin: 0;
+  text-transform: uppercase;
 }
 
 #enter-task {
-    display: block;
-    width: 100%;
-    background: rgb(41, 41, 41);
-    border: none;
-    padding: 1.25em 0.5em;
-    color: seashell;
-    font-size: 1rem;
+  background: rgb(41, 41, 41);
+  display: block;
+  border: none;
+  color: seashell;
+  font-size: 1rem;
+  padding: 1.25em 0.5em;
+  width: 100%;
 }
 
 .form {
-    position: relative;
+  position: relative;
 }
 
 #add-btn {
-    position: absolute;
-    top: 6px;
-    right: 0;
-    border: 0;
-    background: transparent;
+  background: transparent;
+  border: 0;
+  position: absolute;
+  right: 0;
+  top: 6px;
 }
 
 .bar {
-    margin: 1em 0;
-    width: 100%;
-    height: 1px;
-    background: rgb(41, 41, 41);
+  background: rgb(41, 41, 41);
+  height: 1px;
+  margin: 1em 0;
+  width: 100%;
 }
 
 #todo-list {
-    padding: 0;
-    margin: 0;
-    list-style: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .todo {
-    display: block;
-    width: 100%;
-    background: rgb(41, 41, 41);
-    border: 1px solid rgb(94, 94, 94);
-    padding: 1em 0.5em;
-    color: seashell;
-    font-size: 1rem;
-    font-weight: 500;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  align-items: center;
+  background: rgb(41, 41, 41);
+  display: block;
+  display: flex;
+  border: 1px solid rgb(94, 94, 94);
+  color: seashell;
+  font-size: 1rem;
+  font-weight: 500;
+  justify-content: space-between;
+  padding: 1em 0.5em;
+  width: 100%;
 }
 
-.check, .delete, .edit {
-    background: transparent;
-    border: none;
+.check,
+.delete,
+.edit {
+  background: transparent;
+  border: none;
 }
 
 .inputItem {
-    margin: 0;
-    font-size: 18px;
-    color: white;
-    padding: 10px;
-    background: transparent;
-    border: none;
-    font-family: Lato, sans-serif;
+  background: transparent;
+  border: none;
+  color: white;
+  font-family: Lato, sans-serif;
+  font-size: 18px;
+  margin: 0;
+  padding: 10px;
 }
 
 @media (max-width: 600px) {
-    header {
-        margin: 1em 0;
-    }
-    .title {
-        font-size: 3rem;
-    }
-    .today {
-        font-size: 1.5rem;
-    }
+  header {
+    margin: 1em 0;
+  }
+
+  .title {
+    font-size: 3rem;
+  }
+
+  .today {
+    font-size: 1.5rem;
+  }
 }
 
 .completed-todo-list .todo {
-    text-decoration: line-through;
+  text-decoration: line-through;
 }
 
 .completed_title {
-    /* position: relative; */
-    /* padding-left: 40px; */
-    /* cursor: pointer; */
-    font-weight: bold;
-    font-size: 28px;
-    /* margin: 10px 0px; */
+  font-size: 28px;
+  font-weight: bold;
+  /* position: relative; */
+  /* padding-left: 40px; */
+  /* cursor: pointer; */
+  /* margin: 10px 0px; */
 }
 
 
@@ -191,21 +197,23 @@ header {
 } */
 
 /* Completed section styling */
-.light-arrow{
-    color: black !important;
+.light-arrow {
+  color: black !important;
 }
-.completed_title{
-    outline: none !important;
-    box-shadow: none !important;
+
+.completed_title {
+  box-shadow: none !important;
+  outline: none !important;
 }
+
 #completed_arrow.active {
-    transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 
 .completed-todo-list-items {
-    display: none;
-    padding-top: 10px;
-    padding: 0;
-    margin: 0;
-    list-style: none;
+  display: none;
+  list-style: none;
+  margin: 0;
+  padding-top: 10px;
+  padding: 0;
 }
