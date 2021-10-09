@@ -46,8 +46,13 @@ completedList.addEventListener('click', deleteCheck);
 
 // CREATE TODO ITEM
 const createToDoItem = (todo => {
+// contain todoDiv and deadlineDiv
+var divContainer = document.createElement("div");
+divContainer.classList.add("todo-dsp");
+
 var todoDiv = document.createElement('div');
-todoDiv.classList.add('todo'); 
+todoDiv.classList.add('todo');
+divContainer.appendChild(todoDiv); 
 todoDiv.id = `todo-${todo.id}`;  
 
 // create task item name    
@@ -60,6 +65,28 @@ todoDiv.appendChild(newTodo);
 var btnContainer = document.createElement('div');
 btnContainer.classList.add('btn-container');
 todoDiv.appendChild(btnContainer);
+
+ // if user provides a deadline date
+if (todo.date) {
+	// create deadline container
+    var deadlineDiv = document.createElement("div");
+    deadlineDiv.classList.add("deadline-container");
+
+	// create span showing due date
+    var dateSpan = document.createElement("span");
+    var text = parseInt(todo.time.substring(0, 2)) < 12
+        ? document.createTextNode(`Due date is on ${todo.date} at ${todo.time} a.m`)
+        : document.createTextNode(`Due date is on ${todo.date} at ${todo.time} p.m`);
+    dateSpan.appendChild(text);
+    dateSpan.classList.add("date-dsp");
+
+	// create span showing countdown timer
+    var countTimerSpan = document.createElement("span");
+    deadlineDiv.appendChild(dateSpan);
+    deadlineDiv.appendChild(countTimerSpan);
+    countDownTimer(todo, countTimerSpan);
+    divContainer.appendChild(deadlineDiv);
+  }
 
 // if the todo has not been completed, add check button
 if(!todo.isCompleted){
@@ -75,7 +102,7 @@ deleteBtn.innerHTML = `<img id='trash-${todo.id}' src="./icons/delete.svg" alt="
 deleteBtn.classList.add('delete');
 deleteBtn.id = `delete-${todo.id}`;
 btnContainer.appendChild(deleteBtn);
-return todoDiv;
+return divContainer;
 })
 
 // MOVE TODO TO COMPLETED LIST
@@ -100,15 +127,31 @@ function addItem(e){
 	// take input text
 	var newItem = document.getElementById('enter-task').value;
 
+	// take date and time
+  	var dueDate = document.getElementById("enter-due-date").value || "1999-01-01";
+  	var time = document.getElementById("enter-time").value || "23:59";
+
+	// refresh input fields
+  	document.getElementById("enter-due-date").value = "";
+  	document.getElementById("enter-time").value = "";
+
 	// return if input value is empty or contains only spaces
 	if(!newItem.trim()) return;
 
 	// create todo model
-	const todo = {
-		id: Math.random(),
-		text: newItem,
-		isCompleted: false
-	}
+	const todo = dueDate === "1999-01-01"
+      ? {
+          id: Math.random(),
+          text: newItem,
+          isCompleted: false,
+        }
+      : {
+          id: Math.random(),
+          text: newItem,
+          isCompleted: false,
+          date: dueDate,
+          time: time,
+        };
 
 	todos.push(todo)
 
@@ -119,9 +162,14 @@ function addItem(e){
 
 // DISPLAY TODO ITEM
 function renderItem(todo) {
+	// contain todoDiv and deadlineDiv
+  	var divContainer = document.createElement("div");
+  	divContainer.classList.add("todo-dsp");
+
     // create task item div
     var todoDiv = document.createElement('div');
-    todoDiv.classList.add('todo');   
+    todoDiv.classList.add('todo'); 
+	divContainer.appendChild(todoDiv);
 
     // create task item name    
     var newTodo = document.createElement("li");
@@ -138,6 +186,28 @@ function renderItem(todo) {
     
     
     todoDiv.appendChild(newTodo);
+
+	// if user provides a due date
+  	if (todo.date) {
+		// deadline container
+		var deadlineDiv = document.createElement("div");
+		deadlineDiv.classList.add("deadline-container");
+
+		// create span showing due date
+		var dateSpan = document.createElement("span");
+    	var text = parseInt(todo.time.substring(0, 2)) < 12
+        	? document.createTextNode(`Due date is on ${todo.date} at ${todo.time} a.m`)
+        	: document.createTextNode(`Due date is on ${todo.date} at ${todo.time} p.m`);
+    	dateSpan.appendChild(text);
+    	dateSpan.classList.add("date-dsp");
+
+		// create span showing countdown timer
+		var countTimerSpan = document.createElement("span");
+		deadlineDiv.appendChild(dateSpan);
+		deadlineDiv.appendChild(countTimerSpan);
+		countDownTimer(todo, countTimerSpan);
+		divContainer.appendChild(deadlineDiv);
+  }
 
     // button container
     var btnContainer = document.createElement('div');
@@ -202,7 +272,9 @@ function deleteCheck(e) {
 function popToDoItem(item){
     const id =  item.id.substring(item.id.length, item.id.lastIndexOf("-")+1);
     const todo = document.getElementById(`todo-${id}`);
-    todo.remove();
+    const divContainer = todo.parentNode;
+  	todo.remove();
+  	divContainer.remove();
     return todo;
 }
 
@@ -226,6 +298,29 @@ function getLocalTodos(){
 	todos.forEach(todo => {
 		renderItem(todo)
 	})
+}
+
+function countDownTimer(todo, counter) {
+  var dueDate = new Date(`${todo.date} ${todo.time}`).getTime();
+
+  var countDown = setInterval(() => {
+    var currDate = new Date().getTime();
+    var difference = dueDate - currDate;
+
+    var days = Math.floor(difference / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+    counter.innerHTML = `Time left: ${days}d : ${hours}h : ${minutes}m : ${seconds}s`;
+    counter.classList.add("count-down");
+
+    if (difference < 0) {
+      clearInterval(countDown);
+      counter.classList.add("time-out");
+      counter.innerHTML = "*THE DEADLINE IS OUT!!!";
+    }
+  }, 1000);
 }
 
 // ON PAGE LOAD

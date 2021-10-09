@@ -41,6 +41,10 @@
             <div class="col-12">
                 <form action="#" class="form">
                     <input type="text" id="enter-task" placeholder="Enter task item" autocomplete="off">
+                    <br />
+                    <label for="enter-due-date">Due date (optional)</label>
+                    <input type="date" id="enter-due-date" min="yyyy-mm-dd" onclick="setMinDate()" autocomplete="off"/>
+                    <input type="time" id="enter-time" autocomplete="off" />
                     <button id="add-btn" type="submit">
                         <img src="./icons/add.svg" alt="add icon">
                     </button>
@@ -51,12 +55,19 @@
             <div class="col-12">
                 <div class="bar"></div>
                 <ul id="todo-list">
-                <!-- <div class="todo">
-                        <li class="todo-item">Do homework</li>
-                        <Input class="inputItem">
-                        <div class="btn-container">
-                            <button id="check-btn" class="check"><img src="../icons/check.svg" alt="check icon"></button>
-                            <button id="delete-btn" class="delete"><img src="../icons/delete.svg" alt="delete icon"></button>
+                <!-- 
+                    <div class="divContainer">
+                        <div class="todo">
+                            <li class="todo-item">Do homework</li>
+                            <Input class="inputItem">
+                            <div class="btn-container">
+                                <button id="check-btn" class="check"><img src="../icons/check.svg" alt="check icon"></button>
+                                <button id="delete-btn" class="delete"><img src="../icons/delete.svg" alt="delete icon"></button>
+                            </div>
+                        </div>
+                        <div class="date-container">
+                            <span class="date-dsp"></span>
+                            <span class="count-down time-out"></span>
                         </div>
                     </div> -->
                 </ul>
@@ -88,6 +99,22 @@
             arrow.classList.toggle("light-arrow");
             }
 
+             // validate due date
+        function setMinDate() {
+            var today = new Date();
+            var [dd, mm, yyyy] = [ today.getDate(), today.getMonth() + 1, today.getFullYear() ];
+           
+            if (dd < 10) {
+                dd = "0" + dd;
+            }
+
+            if (mm < 10) {
+                mm = "0" + mm;
+            }
+
+            today = yyyy + "-" + mm + "-" + dd;
+            document.getElementById("enter-due-date").setAttribute("min", today);
+        }
     </script>
 
 </body>

@@ -102,6 +102,10 @@ header {
   padding: 0;
 }
 
+.todo-dsp {
+  border: 1px solid rgb(94, 94, 94);
+}
+
 .todo {
   align-items: center;
   background: rgb(41, 41, 41);
@@ -131,6 +135,23 @@ header {
   font-size: 18px;
   margin: 0;
   padding: 10px;
+}
+
+.deadline-container {
+  background: #d5d5d5;
+  padding: 1em 0.5em;
+}
+
+.date-dsp,
+.count-down {
+  padding-right: 1.5em;
+  color: #292929;
+  font-weight: 700;
+}
+
+.time-out {
+  color: #fb3640;
+  font-weight: bold;
 }
 
 @media (max-width: 600px) {
@@ -216,4 +237,26 @@ header {
   margin: 0;
   padding-top: 10px;
   padding: 0;
+}
+
+#enter-due-date,
+#enter-time {
+  background-color: #292929;
+  color: #757575;
+  padding: 10px;
+  border: none;
+  width: 20%;
+  margin-left: 15px;
+}
+
+#enter-time {
+  width: 15%;
+  margin-left: 2px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 1;
+  filter: invert(0.8);
 }
