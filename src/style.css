@@ -85,8 +85,17 @@ header {
   background: transparent;
   border: 0;
   position: absolute;
-  right: 5%;
+  right: 10%;
   top: 6px;
+}
+
+#deleteAll-btn {
+  background: transparent;
+  border: none;
+  position: absolute;
+  right: 0;
+  top: 15px;
+  color: white;
 }
 
 .bar {
