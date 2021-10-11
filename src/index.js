@@ -37,12 +37,14 @@ const item = document.getElementById('enter-task');
 const todoList = document.getElementById('todo-list'); //ul
 const addBtn = document.getElementById('add-btn');
 const completedList = document.getElementById('completed-todo-list-items');
+const deleteAllBtn = document.getElementById('deleteAll-btn');
 
 
 // EVENT LISTENERS
 addBtn.addEventListener('click', addItem);
 todoList.addEventListener('click', deleteCheck);
 completedList.addEventListener('click', deleteCheck);
+deleteAllBtn.addEventListener('click', deleteAllItem);
 
 // CREATE TODO ITEM
 const createToDoItem = (todo => {
@@ -115,6 +117,20 @@ function addItem(e){
 	updateLocalStorage(todos)
 
 	renderItem(todo)
+}
+
+// TO REMOVE ALL THE ITEM
+function deleteAllItem(e){
+	// for each todo item if not complete then delete it
+ 	todos.forEach(todo => {
+		//if(todo.isCompleted == false){
+					const todor = document.getElementById(`todo-${todo.id}`)
+    					todor.remove()
+					deleteTodo(todo)
+					//}
+	})
+	updateLocalStorage(todos);
+
 }
 
 // DISPLAY TODO ITEM
