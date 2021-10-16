@@ -72,20 +72,24 @@ if (todo.date) {
     var deadlineDiv = document.createElement("div");
     deadlineDiv.classList.add("deadline-container");
 
-	// create span showing due date
-    var dateSpan = document.createElement("span");
-    var text = parseInt(todo.time.substring(0, 2)) < 12
-        ? document.createTextNode(`Due date is on ${todo.date} at ${todo.time} a.m`)
-        : document.createTextNode(`Due date is on ${todo.date} at ${todo.time} p.m`);
-    dateSpan.appendChild(text);
-    dateSpan.classList.add("date-dsp");
+  // display text on the left hand side
+    var textDiv = document.createElement("div");
+		textDiv.classList.add("dsp-text");
+    deadlineDiv.appendChild(textDiv);
 
-	// create span showing countdown timer
-    var countTimerSpan = document.createElement("span");
-    deadlineDiv.appendChild(dateSpan);
-    deadlineDiv.appendChild(countTimerSpan);
-    countDownTimer(todo, countTimerSpan);
-    divContainer.appendChild(deadlineDiv);
+    if(parseInt(todo.time.substring(0, 2)) < 12){
+     textDiv.innerHTML = `<h6>Due Date Information</h6> <p>Date: <b>${todo.date}</b><br/>Time: <b>${todo.time} a.m</b></p>`;
+    } else {
+     textDiv.innerHTML = `<h6>Due Date Information</h6> <p>Date: <b>${todo.date}</b><br/>Time: <b>${todo.time} p.m</b></p>`;
+    }
+
+	// display countdown timer on the right hand side
+    var countdownDiv = document.createElement("div");
+		countdownDiv.classList.add("dsp-count-down");
+
+		deadlineDiv.appendChild(countdownDiv);
+		countDownTimer(todo, countdownDiv);
+		divContainer.appendChild(deadlineDiv);
   }
 
 // if the todo has not been completed, add check button
@@ -127,19 +131,16 @@ function addItem(e){
 	// take input text
 	var newItem = document.getElementById('enter-task').value;
 
-	// take date and time
-  	var dueDate = document.getElementById("enter-due-date").value || "1999-01-01";
-  	var time = document.getElementById("enter-time").value || "23:59";
-
-	// refresh input fields
-  	document.getElementById("enter-due-date").value = "";
-  	document.getElementById("enter-time").value = "";
+	// take date and time  format 2021-10-16T05:03
+  var dateTime = document.getElementById("enter-due-date").value || "";
+  var dueDate = dateTime.substring(0, dateTime.indexOf("T"));
+  var time = dateTime.substring(dateTime.indexOf("T")+1);
 
 	// return if input value is empty or contains only spaces
 	if(!newItem.trim()) return;
 
 	// create todo model
-	const todo = dueDate === "1999-01-01"
+	const todo = dueDate === ""
       ? {
           id: Math.random(),
           text: newItem,
@@ -154,6 +155,11 @@ function addItem(e){
         };
 
 	todos.push(todo)
+
+	// refresh input fields  
+  document.getElementById("enter-due-date").value = "";
+  document.getElementById("enter-due-date").style.display="none";
+  document.getElementById("due-date-btn").style.display="inline-block";
 
 	updateLocalStorage(todos)
 
@@ -192,20 +198,24 @@ function renderItem(todo) {
 		// deadline container
 		var deadlineDiv = document.createElement("div");
 		deadlineDiv.classList.add("deadline-container");
+    
+    // display text on the left hand side
+    var textDiv = document.createElement("div");
+		textDiv.classList.add("dsp-text");
+    deadlineDiv.appendChild(textDiv);
 
-		// create span showing due date
-		var dateSpan = document.createElement("span");
-    	var text = parseInt(todo.time.substring(0, 2)) < 12
-        	? document.createTextNode(`Due date is on ${todo.date} at ${todo.time} a.m`)
-        	: document.createTextNode(`Due date is on ${todo.date} at ${todo.time} p.m`);
-    	dateSpan.appendChild(text);
-    	dateSpan.classList.add("date-dsp");
+    if(parseInt(todo.time.substring(0, 2)) < 12){
+     textDiv.innerHTML = `<h6>Due Date Information</h6> <p>Date: <b>${todo.date}</b><br/>Time: <b>${todo.time} a.m</b></p>`;
+    } else {
+     textDiv.innerHTML = `<h6>Due Date Information</h6> <p>Date: <b>${todo.date}</b><br/>Time: <b>${todo.time} p.m</b></p>`;
+    }
 
-		// create span showing countdown timer
-		var countTimerSpan = document.createElement("span");
-		deadlineDiv.appendChild(dateSpan);
-		deadlineDiv.appendChild(countTimerSpan);
-		countDownTimer(todo, countTimerSpan);
+		// display countdown timer on the right hand side
+    var countdownDiv = document.createElement("div");
+		countdownDiv.classList.add("dsp-count-down");
+
+		deadlineDiv.appendChild(countdownDiv);
+		countDownTimer(todo, countdownDiv);
 		divContainer.appendChild(deadlineDiv);
   }
 
@@ -307,21 +317,25 @@ function countDownTimer(todo, counter) {
     var currDate = new Date().getTime();
     var difference = dueDate - currDate;
 
-    var days = Math.floor(difference / (1000 * 60 * 60 * 24));
-    var hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((difference % (1000 * 60)) / 1000);
+    var d = Math.floor(difference / (1000 * 60 * 60 * 24));
+    var h = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+    var s = Math.floor((difference % (1000 * 60)) / 1000);
 
-    counter.innerHTML = `Time left: ${days}d : ${hours}h : ${minutes}m : ${seconds}s`;
-    counter.classList.add("count-down");
+    counter.innerHTML = '<h6>COMING SOON!!</h6><div>' + d + '<span>Days</span></div>' + '<div>' + h + 
+                        '<span>Hours</span></div>' + '<div>' + m + '<span>Minutes</span></div>' +
+                        '<div>' + s + '<span>Seconds</span></div>';
 
     if (difference < 0) {
       clearInterval(countDown);
-      counter.classList.add("time-out");
-      counter.innerHTML = "*THE DEADLINE IS OUT!!!";
+      counter.innerHTML = '<h6 class="time-out">THE DUE DATE IS OUT!!</h6><div>' + 0 + '<span>Days</span></div>' +
+                          '<div>' + 0 + '<span>Hours</span></div>' + '<div>' + 0 + '<span>Minutes</span></div>' + 
+                          '<div>' + 0 + '<span>Seconds</span></div>';
     }
   }, 1000);
 }
+
+
 
 // ON PAGE LOAD
 getLocalTodos()
