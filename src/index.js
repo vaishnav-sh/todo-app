@@ -37,16 +37,27 @@ const item = document.getElementById('enter-task');
 const todoList = document.getElementById('todo-list'); //ul
 const addBtn = document.getElementById('add-btn');
 const completedList = document.getElementById('completed-todo-list-items');
-
+const clearAllBtn = document.getElementById('clear-all-btn');
 
 // EVENT LISTENERS
 addBtn.addEventListener('click', addItem);
 todoList.addEventListener('click', deleteCheck);
 completedList.addEventListener('click', deleteCheck);
+clearAllBtn.addEventListener('click', clearAll);
 
+function isEmptyTodoList() {
+	if(JSON.parse(localStorage.getItem('todos')).length !== 0) {
+		clearAllBtn.removeAttribute("disabled");
+	} else {
+		clearAllBtn.setAttribute("disabled", true);
+	}
+}
+
+isEmptyTodoList();
 
 // CREATE TODO ITEM
 const createToDoItem = (todo => {
+
 var todoDiv = document.createElement('div');
 todoDiv.classList.add('todo'); 
 todoDiv.id = `todo-${todo.id}`;  
@@ -146,6 +157,8 @@ function addItem(e){
 
 	updateLocalStorage(todos)
 
+	isEmptyTodoList()
+
 	renderItem(todo)
 }
 
@@ -189,7 +202,6 @@ function renderItem(todo) {
 	//mark important
 	const impBtn = document.createElement('Button');
 	impBtn.innerHTML = todo.isImportant ? '<img src="./icons/star-filled.svg" alt="mark as important" class="imp">':'<img src="./icons/star-dark.svg" alt="mark as important" class="imp">';
-    console.log(impBtn.innerHTML);
 	impBtn.classList.add('star');
     btnContainer.appendChild(impBtn);
 
@@ -248,7 +260,20 @@ function popToDoItem(item){
 // DELETE TODO FROM LIST AND LOCALSTORAGE
 function deleteTodo(targetTodo){
 	todos = todos.filter(todo => todo.id != targetTodo.id)
-	updateLocalStorage(todos)
+	updateLocalStorage(todos);
+    isEmptyTodoList();
+}
+
+function clearAll() {
+
+	todos.forEach(todo => {
+		document.getElementById(`todo-${todo.id}`).remove();
+	})
+	
+	todos = [];
+	updateLocalStorage(todos);
+
+	clearAllBtn.setAttribute("disabled",true);
 }
 
 // UPDATE LOCALSTORAGE WITH CURRENT TODO ARRAY
