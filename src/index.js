@@ -44,6 +44,7 @@ addBtn.addEventListener('click', addItem);
 todoList.addEventListener('click', deleteCheck);
 completedList.addEventListener('click', deleteCheck);
 
+
 // CREATE TODO ITEM
 const createToDoItem = (todo => {
 var todoDiv = document.createElement('div');
@@ -61,13 +62,26 @@ var btnContainer = document.createElement('div');
 btnContainer.classList.add('btn-container');
 todoDiv.appendChild(btnContainer);
 
-// if the todo has not been completed, add check button
+// if the todo has not been completed, add check and star button
 if(!todo.isCompleted){
+	const impBtn = document.createElement('Button');
+	if(todo.isImportant) {
+		impBtn.innerHTML = `<img id='imp-${todo.id}' src= "./icons/star-filled.svg" alt="mark as important" class="imp">`;
+	} else {
+		impBtn.innerHTML = `<img id='imp-${todo.id}' src= "./icons/star-dark.svg" alt="mark as important" class="imp">`;
+	}
+	impBtn.classList.add('star');
+	impBtn.id = `star-${todo.id}`;
+	btnContainer.appendChild(impBtn);
+
 	const checkBtn = document.createElement('Button');
 	checkBtn.innerHTML = `<img id='done-${todo.id}' src="./icons/check.svg" alt="check icon" class="done">`;
 	checkBtn.classList.add('check');
 	checkBtn.id = `check-${todo.id}`;
 	btnContainer.appendChild(checkBtn);
+
+	impBtn.addEventListener('click', markAsImp);
+
 }
 
 const deleteBtn = document.createElement('Button');
@@ -93,6 +107,23 @@ const moveToDone = (targetTodo) => {
 	updateLocalStorage(todos)
 }
 
+let toggleImpBtn=false;
+
+// MARK TODO AS IMPORTANT
+const markAsImp = (e) => {
+	const targetId = e.target.id.replace('imp-','');
+
+	const todoStar = document.getElementById(`imp-${targetId}`);
+	todos.forEach(todo => {
+		if(todo.id == targetId) {
+			todo.isImportant = !todo.isImportant;
+			toggleImpBtn = todo.isImportant;
+		}
+	})
+	todoStar.src = toggleImpBtn ? "./icons/star-filled.svg" : "./icons/star-dark.svg";
+	updateLocalStorage(todos);
+}
+
 // ADD TODO TO TODOS ARRAY AND LOCAL STORAGE 
 function addItem(e){
 	e.preventDefault();
@@ -107,7 +138,8 @@ function addItem(e){
 	const todo = {
 		id: Math.random(),
 		text: newItem,
-		isCompleted: false
+		isCompleted: false,
+		isImportant: false
 	}
 
 	todos.push(todo)
@@ -153,6 +185,13 @@ function renderItem(todo) {
     editBtn.addEventListener('click',function() {
         input.focus();
     })
+
+	//mark important
+	const impBtn = document.createElement('Button');
+	impBtn.innerHTML = todo.isImportant ? '<img src="./icons/star-filled.svg" alt="mark as important" class="imp">':'<img src="./icons/star-dark.svg" alt="mark as important" class="imp">';
+    console.log(impBtn.innerHTML);
+	impBtn.classList.add('star');
+    btnContainer.appendChild(impBtn);
 
     // check and delete
     const checkBtn = document.createElement('Button');
