@@ -50,6 +50,9 @@
         <div class="row mx-0 mb-3">
             <div class="col-12">
                 <div class="bar"></div>
+                <div class="clear-container">
+                    <button class="clear-all-btn" id="clear-all-btn">Clear All</button>
+                </div>
                 <ul id="todo-list">
                 <!-- <div class="todo">
                         <li class="todo-item">Do homework</li>
@@ -86,6 +89,8 @@
             // change arrow color depending on theme
             var arrow = document.querySelector('.completed_title');
             arrow.classList.toggle("light-arrow");
+            var clearBtn = document.querySelector('.clear-all-btn');
+            clearBtn.classList.toggle("light-clear-btn");
             }
 
     </script>
