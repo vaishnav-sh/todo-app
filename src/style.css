@@ -44,6 +44,11 @@ header {
   margin: 2em 0;
 }
 
+li {
+  width: 85%;
+  word-wrap: break-word;
+}
+
 .title {
   font-family: nasalization;
   font-size: 3.5rem;
@@ -73,7 +78,7 @@ header {
   border: none;
   color: seashell;
   font-size: 1rem;
-  padding: 1.25em 0.5em;
+  padding: 1.25em 4em 1.25em 0.5em;
   width: 100%;
 }
 
@@ -171,6 +176,15 @@ header {
 
   .today {
     font-size: 1.5rem;
+  }
+
+  li {
+    width: 87%;
+    word-wrap: break-word;
+  }
+
+  .btn-container {
+    width: 15%;
   }
 }
 
