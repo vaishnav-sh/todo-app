@@ -118,7 +118,8 @@ header {
 
 .check,
 .delete,
-.edit {
+.edit,
+.star {
   background: transparent;
   border: none;
 }
