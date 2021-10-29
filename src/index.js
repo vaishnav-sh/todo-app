@@ -1,5 +1,7 @@
 // DEPENDENCIES
 let todos = []
+let task_count=0
+let task_completed_count=0
 
 // SETTING THE DATE
 const myDate = document.getElementById('date')
@@ -38,6 +40,8 @@ const todoList = document.getElementById('todo-list'); //ul
 const addBtn = document.getElementById('add-btn');
 const completedList = document.getElementById('completed-todo-list-items');
 const clearAllBtn = document.getElementById('clear-all-btn');
+const task_counter = document.getElementById("task_counter");
+const appriciation=document.getElementById("appriciation");
 
 // EVENT LISTENERS
 addBtn.addEventListener('click', addItem);
@@ -154,6 +158,10 @@ function addItem(e){
 	}
 
 	todos.push(todo)
+	task_count++;
+	task_counter.innerHTML=`(${task_completed_count}/${task_count})`;
+	console.log(task_count);
+	appriciation.classList.add("hide");
 
 	updateLocalStorage(todos)
 
@@ -239,11 +247,24 @@ function deleteCheck(e) {
 			if(item.classList[0] === 'done') {
 					popToDoItem(item)
 					moveToDone(todo)
+					task_completed_count++;
+					task_counter.innerHTML=`(${task_completed_count}/${task_count})`;
+					if(task_count==task_completed_count){
+						appriciation.classList.remove("hide");
+					}
 			
 			// if being deleted, delete
 			} else if (item.classList[0] === 'trash'){
 					popToDoItem(item)
 					deleteTodo(todo)
+					task_count--;
+					if(todo.isCompleted){
+						task_completed_count--;
+					}
+					task_counter.innerHTML=`(${task_completed_count}/${task_count})`;
+					if(task_count==task_completed_count && task_count!=0){
+						appriciation.classList.remove("hide");
+					}
 			}
 		}
 	})
@@ -272,7 +293,10 @@ function clearAll() {
 	
 	todos = [];
 	updateLocalStorage(todos);
-
+	task_count=0;
+	task_completed_count=0;
+	task_counter.innerHTML=`(${task_completed_count}/${task_count})`;
+	appriciation.classList.add("hide");
 	clearAllBtn.setAttribute("disabled",true);
 }
 
