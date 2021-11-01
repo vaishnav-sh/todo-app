@@ -258,3 +258,15 @@ li {
   padding-top: 10px;
   padding: 0;
 }
+.hide{
+  display: none;
+}
+.appriciation_msg {
+  color: #ffffff84;
+  font-weight: bold;
+}
+#task_counter{
+  position: relative;
+  left: 200px;
+  bottom: 42px;
+}
