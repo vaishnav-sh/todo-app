@@ -3,6 +3,14 @@ let todos = []
 let task_count=0
 let task_completed_count=0
 
+// Tooltips for popOver
+$(function () {
+	$('[data-toggle="tooltip"]').tooltip({
+		placement: 'top',
+		animation: true
+	})
+});
+
 // SETTING THE DATE
 const myDate = document.getElementById('date')
 const myDay = document.getElementById('day');
@@ -90,6 +98,9 @@ if(!todo.isCompleted){
 	btnContainer.appendChild(impBtn);
 
 	const checkBtn = document.createElement('Button');
+	checkBtn.setAttribute('data-toggle', 'tooltip');
+	checkBtn.setAttribute('title', 'Complete task');
+	checkBtn.setAttribute('data-placement', 'top');
 	checkBtn.innerHTML = `<img id='done-${todo.id}' src="./icons/check.svg" alt="check icon" class="done">`;
 	checkBtn.classList.add('check');
 	checkBtn.id = `check-${todo.id}`;
@@ -100,6 +111,9 @@ if(!todo.isCompleted){
 }
 
 const deleteBtn = document.createElement('Button');
+deleteBtn.setAttribute('data-toggle', 'tooltip');
+deleteBtn.setAttribute('title', 'Delete task');
+deleteBtn.setAttribute('data-placement', 'top');
 deleteBtn.innerHTML = `<img id='trash-${todo.id}' src="./icons/delete.svg" alt="delete icon" class="trash">`;
 deleteBtn.classList.add('delete');
 deleteBtn.id = `delete-${todo.id}`;
